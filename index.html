@@ -36,7 +36,17 @@
       </section>
     </main>
 
+    <!-- Модальное окно с детальной карточкой растения -->
+    <div id="plant-modal" class="modal" hidden>
+      <div class="modal__backdrop" data-close></div>
+      <div class="modal__box" role="dialog" aria-modal="true">
+        <button class="modal__close" data-close aria-label="Закрыть">×</button>
+        <div id="plant-modal-body"></div>
+      </div>
+    </div>
+
     <script src="js/catalog.js"></script>
+    <script src="js/plant-details.js"></script>
     <script src="js/app.js"></script>
   </body>
 </html>

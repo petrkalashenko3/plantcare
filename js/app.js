@@ -47,8 +47,38 @@ async function initCatalog() {
   }
 }
 
+/**
+ * Настраивает открытие/закрытие детальной карточки растения:
+ *  - клик по карточке справочника открывает модалку (через делегирование);
+ *  - клик по крестику или по затемнённому фону, а также Escape — закрывают её.
+ */
+function initPlantDetails() {
+  // Делегирование: один обработчик на весь список вместо обработчика на каждой карточке.
+  document.getElementById('catalog-list').addEventListener('click', (event) => {
+    const card = event.target.closest('.card');
+    if (card) {
+      openPlantDetails(card.dataset.plantId);
+    }
+  });
+
+  // Закрытие по элементам с атрибутом data-close (крестик и фон).
+  document.getElementById('plant-modal').addEventListener('click', (event) => {
+    if (event.target.hasAttribute('data-close')) {
+      closePlantDetails();
+    }
+  });
+
+  // Закрытие по клавише Escape.
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      closePlantDetails();
+    }
+  });
+}
+
 // Ждём построения DOM, затем запускаем приложение.
 document.addEventListener('DOMContentLoaded', () => {
   initNavigation();
   initCatalog();
+  initPlantDetails();
 });
