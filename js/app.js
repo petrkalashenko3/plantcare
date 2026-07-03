@@ -95,17 +95,23 @@ function initMyPlants() {
     }
   });
 
-  // Кнопки «редактировать» / «удалить» в списке (делегирование).
+  // Кнопки «полил» / «редактировать» / «удалить» в списке (делегирование).
   document.getElementById('my-plants-list').addEventListener('click', (event) => {
+    const waterBtn = event.target.closest('[data-water]');
     const editBtn = event.target.closest('[data-edit]');
     const deleteBtn = event.target.closest('[data-delete]');
-    if (editBtn) {
+    if (waterBtn) {
+      waterPlant(waterBtn.dataset.water);
+    } else if (editBtn) {
       openEditMyPlantForm(editBtn.dataset.edit);
     } else if (deleteBtn && confirm('Удалить растение из коллекции?')) {
       removeMyPlant(deleteBtn.dataset.delete);
       renderMyPlants();
     }
   });
+
+  // Кнопка включения браузерных уведомлений.
+  document.getElementById('enable-notifications').addEventListener('click', enableNotifications);
 }
 
 // Ждём построения DOM, затем запускаем приложение.
@@ -118,4 +124,5 @@ document.addEventListener('DOMContentLoaded', async () => {
   await initCatalog();
   renderFavorites();
   renderMyPlants();
+  notifyDuePlants(); // если уведомления уже разрешены — напомним про полив
 });

@@ -21,6 +21,7 @@ function createMyPlantCard(item) {
   const notesRow = item.notes
     ? `<p class="myplant__notes">📝 ${item.notes}</p>`
     : '';
+  const status = getWateringStatus(item);
 
   const card = document.createElement('article');
   card.className = 'myplant';
@@ -32,6 +33,8 @@ function createMyPlantCard(item) {
         💧 полив каждые ${item.wateringIntervalDays} дн. ·
         добавлено ${formatDate(item.addedDate)}
       </p>
+      <p class="myplant__status ${status.className}">${status.label}</p>
+      <button class="btn btn--water" data-water="${item.id}">💧 Полил</button>
       ${notesRow}
     </div>
     <div class="myplant__actions">
@@ -42,8 +45,10 @@ function createMyPlantCard(item) {
   return card;
 }
 
-/** Перерисовывает вкладку «Мои растения». */
+/** Перерисовывает вкладку «Мои растения» (список + баннер напоминаний). */
 function renderMyPlants() {
+  renderRemindersBanner();
+
   const container = document.getElementById('my-plants-list');
   const items = getMyPlants();
 
