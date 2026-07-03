@@ -1,0 +1,107 @@
+/* ============================================================
+   PlantCare — базовые стили и раскладка каркаса.
+   Используем CSS-переменные, чтобы цвета/отступы задавались
+   в одном месте и легко менялись.
+   ============================================================ */
+
+:root {
+  --color-bg: #f4f7f2;
+  --color-surface: #ffffff;
+  --color-primary: #3f7d4e;      /* основной зелёный */
+  --color-primary-dark: #2f5e3b;
+  --color-accent: #e6b800;       /* акцент (избранное) */
+  --color-text: #22302a;
+  --color-muted: #7a8a80;
+  --color-border: #e0e6e0;
+
+  --radius: 12px;
+  --shadow: 0 2px 8px rgba(31, 61, 41, 0.08);
+  --gap: 16px;
+
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: 1.5;
+}
+
+/* ---------- Шапка ---------- */
+.header {
+  background: var(--color-primary);
+  color: #fff;
+  padding: 20px 16px;
+  text-align: center;
+}
+
+.header__logo {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.header__subtitle {
+  margin: 4px 0 0;
+  opacity: 0.9;
+  font-size: 0.95rem;
+}
+
+/* ---------- Навигация по вкладкам ---------- */
+.nav {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.nav__btn {
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+  padding: 8px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.nav__btn:hover {
+  border-color: var(--color-primary);
+}
+
+.nav__btn--active {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #fff;
+}
+
+/* ---------- Контент ---------- */
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 24px 16px;
+}
+
+.placeholder {
+  text-align: center;
+  color: var(--color-muted);
+  padding: 48px 16px;
+}
+
+/* Сетка карточек — пригодится для справочника и коллекции. */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--gap);
+}

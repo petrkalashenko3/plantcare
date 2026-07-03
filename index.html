@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PlantCare — помощник по уходу за растениями</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header class="header">
+      <h1 class="header__logo">🌿 PlantCare</h1>
+      <p class="header__subtitle">Помощник по уходу за комнатными растениями</p>
+    </header>
+
+    <!-- Навигация по разделам. Кнопки переключают вкладки через data-tab. -->
+    <nav class="nav">
+      <button class="nav__btn" data-tab="catalog">Справочник</button>
+      <button class="nav__btn" data-tab="my-plants">Мои растения</button>
+      <button class="nav__btn" data-tab="favorites">Избранное</button>
+    </nav>
+
+    <main class="container">
+      <!-- Раздел «Справочник» -->
+      <section id="tab-catalog" class="tab">
+        <p class="placeholder">Справочник растений появится здесь.</p>
+      </section>
+
+      <!-- Раздел «Мои растения» (личная коллекция) -->
+      <section id="tab-my-plants" class="tab" hidden>
+        <p class="placeholder">Ваша личная коллекция появится здесь.</p>
+      </section>
+
+      <!-- Раздел «Избранное» -->
+      <section id="tab-favorites" class="tab" hidden>
+        <p class="placeholder">Избранные растения появятся здесь.</p>
+      </section>
+    </main>
+
+    <script src="js/app.js"></script>
+  </body>
+</html>

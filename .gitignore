@@ -1,0 +1,22 @@
+# Секреты и переменные окружения
+.env
+
+# Python (появится на этапе серверной части)
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+
+# Локальная БД серверной части
+*.sqlite3
+*.db
+
+# Возможный тулинг
+node_modules/
+
+# IDE и ОС
+.idea/
+.vscode/
+.claude/
+.DS_Store
+Thumbs.db
