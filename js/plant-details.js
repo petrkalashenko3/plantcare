@@ -36,6 +36,7 @@ function renderPlantDetails(plant) {
     <button class="fav-btn" data-fav-toggle aria-pressed="${fav}">
       ${fav ? '⭐ В избранном' : '☆ В избранное'}
     </button>
+    <button class="fav-btn" data-add-myplant>➕ В мои растения</button>
     <dl class="details__list">
       <div class="details__row">
         <dt>☀️ Освещение</dt>

@@ -13,6 +13,7 @@
 
 const STORAGE_KEYS = {
   favorites: 'plantcare:favorites',
+  myPlants: 'plantcare:my-plants',
 };
 
 /**
@@ -77,4 +78,67 @@ function toggleFavorite(plantId) {
 
   writeJson(STORAGE_KEYS.favorites, favorites);
   return index === -1;
+}
+
+// --------------------------------------------------------------------------- //
+//  Личная коллекция «Мои растения»
+// --------------------------------------------------------------------------- //
+//
+//  Одна запись коллекции — это объект:
+//    id                    — уникальный код записи
+//    plantId               — ссылка на растение из справочника
+//    customName            — своё название (необязательно)
+//    addedDate             — дата добавления (YYYY-MM-DD)
+//    lastWateredDate       — дата последнего полива (YYYY-MM-DD)
+//    wateringIntervalDays  — как часто поливать, в днях
+//    notes                 — заметки
+
+/** @returns {object[]} записи личной коллекции */
+function getMyPlants() {
+  return readJson(STORAGE_KEYS.myPlants, []);
+}
+
+/**
+ * @param {string} id
+ * @returns {object|null}
+ */
+function getMyPlant(id) {
+  return getMyPlants().find((item) => item.id === id) || null;
+}
+
+/**
+ * Добавляет растение в коллекцию.
+ * @param {object} data поля записи (plantId, customName, addedDate, ...)
+ * @returns {object} созданная запись с присвоенным id
+ */
+function addMyPlant(data) {
+  const items = getMyPlants();
+  const item = { id: generateId(), ...data };
+  items.push(item);
+  writeJson(STORAGE_KEYS.myPlants, items);
+  return item;
+}
+
+/**
+ * Обновляет запись коллекции по id.
+ * @param {string} id
+ * @param {object} data новые значения полей
+ * @returns {object|null} обновлённая запись или null, если не нашли
+ */
+function updateMyPlant(id, data) {
+  const items = getMyPlants();
+  const index = items.findIndex((item) => item.id === id);
+  if (index === -1) {
+    return null;
+  }
+  // Раскладываем старые поля, поверх — новые; id перезаписать не даём.
+  items[index] = { ...items[index], ...data, id };
+  writeJson(STORAGE_KEYS.myPlants, items);
+  return items[index];
+}
+
+/** Удаляет запись коллекции по id. */
+function removeMyPlant(id) {
+  const items = getMyPlants().filter((item) => item.id !== id);
+  writeJson(STORAGE_KEYS.myPlants, items);
 }

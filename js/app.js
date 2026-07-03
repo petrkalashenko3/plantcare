@@ -64,7 +64,11 @@ function initPlantDetails() {
 
   // Клики внутри модального окна.
   document.getElementById('plant-modal').addEventListener('click', (event) => {
-    if (event.target.closest('[data-fav-toggle]')) {
+    if (event.target.closest('[data-add-myplant]')) {
+      const plantId = document.getElementById('plant-modal').dataset.plantId;
+      closePlantDetails();
+      openAddMyPlantForm(plantId);   // «В мои растения» — открываем форму
+    } else if (event.target.closest('[data-fav-toggle]')) {
       toggleCurrentFavorite();       // нажали ⭐
     } else if (event.target.hasAttribute('data-close')) {
       closePlantDetails();           // нажали крестик или фон
@@ -79,12 +83,39 @@ function initPlantDetails() {
   });
 }
 
+/** Настраивает вкладку «Мои растения»: форму и действия над списком. */
+function initMyPlants() {
+  // Отправка формы добавления/редактирования.
+  document.getElementById('myplant-form').addEventListener('submit', submitMyPlantForm);
+
+  // Закрытие формы (крестик, фон, кнопка «Отмена») — элементы с data-close-form.
+  document.getElementById('myplant-modal').addEventListener('click', (event) => {
+    if (event.target.hasAttribute('data-close-form')) {
+      closeMyPlantForm();
+    }
+  });
+
+  // Кнопки «редактировать» / «удалить» в списке (делегирование).
+  document.getElementById('my-plants-list').addEventListener('click', (event) => {
+    const editBtn = event.target.closest('[data-edit]');
+    const deleteBtn = event.target.closest('[data-delete]');
+    if (editBtn) {
+      openEditMyPlantForm(editBtn.dataset.edit);
+    } else if (deleteBtn && confirm('Удалить растение из коллекции?')) {
+      removeMyPlant(deleteBtn.dataset.delete);
+      renderMyPlants();
+    }
+  });
+}
+
 // Ждём построения DOM, затем запускаем приложение.
 document.addEventListener('DOMContentLoaded', async () => {
   initNavigation();
   initPlantDetails();
-  // Сначала дожидаемся загрузки справочника (fetch), и только потом рисуем
-  // «Избранное»: ему нужны данные растений (getPlantById), иначе список будет пуст.
+  initMyPlants();
+  // Справочник грузится через fetch — дожидаемся, потом рисуем разделы,
+  // которым нужны данные растений (Избранное и Мои растения).
   await initCatalog();
   renderFavorites();
+  renderMyPlants();
 });
