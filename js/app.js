@@ -36,7 +36,19 @@ function initNavigation() {
   switchTab('catalog'); // при загрузке показываем справочник
 }
 
+/** Загружает справочник и отрисовывает карточки; при ошибке показывает текст. */
+async function initCatalog() {
+  const container = document.getElementById('catalog-list');
+  try {
+    const plants = await loadPlants();
+    renderCatalog(plants);
+  } catch (error) {
+    container.innerHTML = `<p class="placeholder">${error.message}</p>`;
+  }
+}
+
 // Ждём построения DOM, затем запускаем приложение.
 document.addEventListener('DOMContentLoaded', () => {
   initNavigation();
+  initCatalog();
 });

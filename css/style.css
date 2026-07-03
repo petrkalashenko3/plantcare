@@ -105,3 +105,36 @@ body {
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: var(--gap);
 }
+
+/* Карточка одного растения в сетке. */
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 16px;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  text-align: center;
+  transition: transform 0.12s, box-shadow 0.12s;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(31, 61, 41, 0.14);
+}
+
+.card__emoji {
+  font-size: 2.4rem;
+  line-height: 1;
+}
+
+.card__title {
+  margin: 8px 0 4px;
+  font-size: 1.05rem;
+}
+
+.card__hint {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 0.85rem;
+}
