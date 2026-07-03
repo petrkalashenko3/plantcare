@@ -53,18 +53,21 @@ async function initCatalog() {
  *  - клик по крестику или по затемнённому фону, а также Escape — закрывают её.
  */
 function initPlantDetails() {
-  // Делегирование: один обработчик на весь список вместо обработчика на каждой карточке.
-  document.getElementById('catalog-list').addEventListener('click', (event) => {
+  // Делегирование: один обработчик на общий контейнер ловит клики по карточкам
+  // в любом разделе (Справочник, Избранное, Мои растения).
+  document.querySelector('.container').addEventListener('click', (event) => {
     const card = event.target.closest('.card');
     if (card) {
       openPlantDetails(card.dataset.plantId);
     }
   });
 
-  // Закрытие по элементам с атрибутом data-close (крестик и фон).
+  // Клики внутри модального окна.
   document.getElementById('plant-modal').addEventListener('click', (event) => {
-    if (event.target.hasAttribute('data-close')) {
-      closePlantDetails();
+    if (event.target.closest('[data-fav-toggle]')) {
+      toggleCurrentFavorite();       // нажали ⭐
+    } else if (event.target.hasAttribute('data-close')) {
+      closePlantDetails();           // нажали крестик или фон
     }
   });
 
@@ -77,8 +80,11 @@ function initPlantDetails() {
 }
 
 // Ждём построения DOM, затем запускаем приложение.
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   initNavigation();
-  initCatalog();
   initPlantDetails();
+  // Сначала дожидаемся загрузки справочника (fetch), и только потом рисуем
+  // «Избранное»: ему нужны данные растений (getPlantById), иначе список будет пуст.
+  await initCatalog();
+  renderFavorites();
 });

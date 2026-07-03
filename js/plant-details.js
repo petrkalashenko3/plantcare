@@ -25,11 +25,17 @@ function renderPlantDetails(plant) {
        </div>`
     : '';
 
+  // Текущее состояние избранного — чтобы показать правильную подпись кнопки ⭐.
+  const fav = isFavorite(plant.id);
+
   return `
     <div class="details__header">
       <span class="details__emoji">${plant.emoji || '🪴'}</span>
       <h2 class="details__title">${plant.name}</h2>
     </div>
+    <button class="fav-btn" data-fav-toggle aria-pressed="${fav}">
+      ${fav ? '⭐ В избранном' : '☆ В избранное'}
+    </button>
     <dl class="details__list">
       <div class="details__row">
         <dt>☀️ Освещение</dt>
@@ -62,11 +68,27 @@ function openPlantDetails(plantId) {
     return; // на всякий случай: неизвестный id — просто ничего не делаем
   }
 
+  const modal = document.getElementById('plant-modal');
+  modal.dataset.plantId = plantId; // запомним, какое растение открыто (для ⭐)
   document.getElementById('plant-modal-body').innerHTML = renderPlantDetails(plant);
-  document.getElementById('plant-modal').hidden = false;
+  modal.hidden = false;
 }
 
 /** Закрывает модальное окно с деталями. */
 function closePlantDetails() {
   document.getElementById('plant-modal').hidden = true;
+}
+
+/**
+ * Переключает избранное для сейчас открытого растения и обновляет интерфейс:
+ * подпись кнопки в модалке и содержимое вкладки «Избранное».
+ */
+function toggleCurrentFavorite() {
+  const plantId = document.getElementById('plant-modal').dataset.plantId;
+  if (!plantId) {
+    return;
+  }
+  toggleFavorite(plantId);
+  openPlantDetails(plantId); // перерисуем модалку — обновится подпись кнопки
+  renderFavorites();         // обновим вкладку «Избранное»
 }
