@@ -92,4 +92,5 @@ function toggleCurrentFavorite() {
   toggleFavorite(plantId);
   openPlantDetails(plantId); // перерисуем модалку — обновится подпись кнопки
   renderFavorites();         // обновим вкладку «Избранное»
+  renderCatalog();           // обновим значок ⭐ на карточках справочника
 }

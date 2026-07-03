@@ -48,7 +48,11 @@ function createPlantCard(plant) {
   card.className = 'card';
   card.dataset.plantId = plant.id; // чтобы потом по клику знать, какое растение
 
+  // Значок ⭐ в углу карточки, если растение в избранном.
+  const favBadge = isFavorite(plant.id) ? '<span class="card__fav">⭐</span>' : '';
+
   card.innerHTML = `
+    ${favBadge}
     <div class="card__emoji">${plant.emoji || '🪴'}</div>
     <h3 class="card__title">${plant.name}</h3>
     <p class="card__hint">☀️ ${plant.light}</p>
@@ -60,7 +64,7 @@ function createPlantCard(plant) {
  * Отрисовывает весь справочник в контейнер вкладки «Справочник».
  * @param {Array} plants
  */
-function renderCatalog(plants) {
+function renderCatalog(plants = plantsCache) {
   const container = document.getElementById('catalog-list');
   container.innerHTML = '';
 

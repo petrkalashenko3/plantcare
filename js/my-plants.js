@@ -48,6 +48,7 @@ function createMyPlantCard(item) {
 /** Перерисовывает вкладку «Мои растения» (список + баннер напоминаний). */
 function renderMyPlants() {
   renderRemindersBanner();
+  updateCareBadge();
 
   const container = document.getElementById('my-plants-list');
   const items = getMyPlants();

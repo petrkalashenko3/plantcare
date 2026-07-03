@@ -66,6 +66,18 @@ function renderRemindersBanner() {
     `<div class="reminder-banner">🔔 Пора полить (${due.length}): ${names}</div>`;
 }
 
+/** Обновляет счётчик «нужен уход» на кнопке вкладки «Мои растения». */
+function updateCareBadge() {
+  const badge = document.getElementById('care-badge');
+  const count = getDuePlants().length;
+  if (count > 0) {
+    badge.textContent = count;
+    badge.hidden = false;
+  } else {
+    badge.hidden = true;
+  }
+}
+
 /** Отмечает растение политым сегодня и обновляет вкладку. */
 function waterPlant(itemId) {
   updateMyPlant(itemId, { lastWateredDate: todayISO() });
