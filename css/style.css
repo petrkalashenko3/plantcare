@@ -443,3 +443,27 @@ body {
   background: var(--color-primary-dark);
   border-color: var(--color-primary-dark);
 }
+
+/* ---------- Картинки растений (fallback — эмодзи) ---------- */
+.card__img {
+  display: block;
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+.details__img {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.myplant__img {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 8px;
+}

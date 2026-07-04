@@ -51,9 +51,14 @@ function createPlantCard(plant) {
   // Значок ⭐ в углу карточки, если растение в избранном.
   const favBadge = isFavorite(plant.id) ? '<span class="card__fav">⭐</span>' : '';
 
+  // Картинка растения, если задана; иначе — эмодзи (запасной вариант).
+  const media = plant.image
+    ? `<img class="card__img" src="${plant.image}" alt="${plant.name}" loading="lazy">`
+    : `<div class="card__emoji">${plant.emoji || '🪴'}</div>`;
+
   card.innerHTML = `
     ${favBadge}
-    <div class="card__emoji">${plant.emoji || '🪴'}</div>
+    ${media}
     <h3 class="card__title">${plant.name}</h3>
     <p class="card__hint">☀️ ${plant.light}</p>
   `;

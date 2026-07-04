@@ -28,9 +28,14 @@ function renderPlantDetails(plant) {
   // Текущее состояние избранного — чтобы показать правильную подпись кнопки ⭐.
   const fav = isFavorite(plant.id);
 
+  // Картинка растения, если задана; иначе — эмодзи.
+  const media = plant.image
+    ? `<img class="details__img" src="${plant.image}" alt="${plant.name}">`
+    : `<span class="details__emoji">${plant.emoji || '🪴'}</span>`;
+
   return `
     <div class="details__header">
-      <span class="details__emoji">${plant.emoji || '🪴'}</span>
+      ${media}
       <h2 class="details__title">${plant.name}</h2>
     </div>
     <button class="fav-btn" data-fav-toggle aria-pressed="${fav}">

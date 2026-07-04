@@ -8,7 +8,8 @@
     "repotting": "Раз в 1–2 года весной, в горшок чуть большего размера",
     "toxicity": "Ядовита для кошек и собак (оксалаты кальция)",
     "toxic": true,
-    "features": "Нужна опора для роста, любит опрыскивание листьев"
+    "features": "Нужна опора для роста, любит опрыскивание листьев",
+    "image": "images/monstera.jpg"
   },
   {
     "id": "sansevieria",
@@ -19,7 +20,8 @@
     "repotting": "Раз в 2–3 года, любит тесный горшок",
     "toxicity": "Слаботоксична при поедании",
     "toxic": true,
-    "features": "Очень неприхотлива, очищает воздух"
+    "features": "Очень неприхотлива, очищает воздух",
+    "image": "images/sansevieria.jpg"
   },
   {
     "id": "spathiphyllum",
@@ -30,7 +32,8 @@
     "repotting": "Ежегодно весной",
     "toxicity": "Ядовит (оксалаты кальция)",
     "toxic": true,
-    "features": "Сохнут кончики листьев при сухом воздухе — опрыскивать"
+    "features": "Сохнут кончики листьев при сухом воздухе — опрыскивать",
+    "image": "images/spathiphyllum.jpg"
   },
   {
     "id": "zamioculcas",
@@ -41,7 +44,8 @@
     "repotting": "Раз в 2 года",
     "toxicity": "Ядовит: сок раздражает кожу и слизистые",
     "toxic": true,
-    "features": "Запасает воду в клубнях — не заливать"
+    "features": "Запасает воду в клубнях — не заливать",
+    "image": "images/zamioculcas.jpg"
   },
   {
     "id": "chlorophytum",
@@ -52,7 +56,8 @@
     "repotting": "Ежегодно, быстро разрастается",
     "toxicity": "Не ядовит, безопасен для животных",
     "toxic": false,
-    "features": "Даёт «детки», очень легко размножается"
+    "features": "Даёт «детки», очень легко размножается",
+    "image": "images/chlorophytum.jpg"
   },
   {
     "id": "aloe-vera",
@@ -63,7 +68,8 @@
     "repotting": "Раз в 2–3 года",
     "toxicity": "Сок наружно полезен, внутрь животным давать нельзя",
     "toxic": false,
-    "features": "Обязателен хороший дренаж, боится перелива"
+    "features": "Обязателен хороший дренаж, боится перелива",
+    "image": "images/aloe-vera.png"
   },
   {
     "id": "phalaenopsis",
@@ -74,7 +80,8 @@
     "repotting": "Раз в 2–3 года в специальную кору",
     "toxicity": "Не ядовита",
     "toxic": false,
-    "features": "Прозрачный горшок: корни участвуют в фотосинтезе"
+    "features": "Прозрачный горшок: корни участвуют в фотосинтезе",
+    "image": "images/phalaenopsis.jpg"
   },
   {
     "id": "ficus-benjamina",
@@ -85,7 +92,8 @@
     "repotting": "Раз в 1–2 года",
     "toxicity": "Млечный сок раздражает кожу, слаботоксичен",
     "toxic": true,
-    "features": "Не любит перестановок — от стресса сбрасывает листья"
+    "features": "Не любит перестановок — от стресса сбрасывает листья",
+    "image": "images/ficus-benjamina.jpg"
   },
   {
     "id": "echinopsis",
@@ -96,7 +104,8 @@
     "repotting": "Раз в 2–3 года",
     "toxicity": "Не ядовит (но колючки)",
     "toxic": false,
-    "features": "Для цветения нужна холодная сухая зимовка"
+    "features": "Для цветения нужна холодная сухая зимовка",
+    "image": "images/echinopsis.jpg"
   },
   {
     "id": "crassula",
@@ -107,7 +116,8 @@
     "repotting": "Раз в 2–3 года",
     "toxicity": "Слаботоксична при поедании",
     "toxic": true,
-    "features": "Красивую крону формируют обрезкой"
+    "features": "Красивую крону формируют обрезкой",
+    "image": "images/crassula.jpg"
   },
   {
     "id": "dracaena",
@@ -118,7 +128,8 @@
     "repotting": "Раз в 2 года",
     "toxicity": "Ядовита для кошек и собак",
     "toxic": true,
-    "features": "Сохнут кончики от сухого воздуха и фтора в воде"
+    "features": "Сохнут кончики от сухого воздуха и фтора в воде",
+    "image": "images/dracaena.jpg"
   },
   {
     "id": "pelargonium",
@@ -129,6 +140,7 @@
     "repotting": "Молодые — ежегодно",
     "toxicity": "Слаботоксична для животных",
     "toxic": true,
-    "features": "Цветёт всё лето, любит проветривание"
+    "features": "Цветёт всё лето, любит проветривание",
+    "image": "images/pelargonium.jpg"
   }
 ]

@@ -17,16 +17,20 @@ function myPlantDisplayName(item) {
 /** Строит карточку одного растения из личной коллекции. */
 function createMyPlantCard(item) {
   const plant = getPlantById(item.plantId);
-  const emoji = plant ? plant.emoji : '🪴';
   const notesRow = item.notes
     ? `<p class="myplant__notes">📝 ${item.notes}</p>`
     : '';
   const status = getWateringStatus(item);
 
+  // Картинка из справочника, если есть; иначе — эмодзи.
+  const media = plant && plant.image
+    ? `<img class="myplant__img" src="${plant.image}" alt="">`
+    : `<div class="myplant__emoji">${plant ? plant.emoji : '🪴'}</div>`;
+
   const card = document.createElement('article');
   card.className = 'myplant';
   card.innerHTML = `
-    <div class="myplant__emoji">${emoji}</div>
+    ${media}
     <div class="myplant__info">
       <h3 class="myplant__name">${myPlantDisplayName(item)}</h3>
       <p class="myplant__meta">
