@@ -108,6 +108,22 @@ function notifyDuePlants() {
   });
 }
 
+/**
+ * Шлёт уведомление про КОНКРЕТНОЕ растение, если ему уже пора полив.
+ * Вызывается сразу после сохранения записи в форме (реакция на изменение).
+ */
+function notifyIfDue(item) {
+  if (!item || !notificationsSupported() || Notification.permission !== 'granted') {
+    return;
+  }
+  const status = getWateringStatus(item);
+  if (status.daysLeft <= 0) {
+    new Notification('Plantata — пора полить 🌱', {
+      body: `${myPlantDisplayName(item)}: ${status.label}`,
+    });
+  }
+}
+
 /** Запрашивает разрешение на уведомления и даёт видимый отклик. */
 function enableNotifications() {
   if (!notificationsSupported()) {

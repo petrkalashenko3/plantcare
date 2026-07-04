@@ -145,12 +145,11 @@ function submitMyPlantForm(event) {
     notes: form.elements.notes.value.trim(),
   };
 
-  if (form.dataset.editId) {
-    updateMyPlant(form.dataset.editId, data); // редактируем
-  } else {
-    addMyPlant(data); // добавляем
-  }
+  const saved = form.dataset.editId
+    ? updateMyPlant(form.dataset.editId, data) // редактируем
+    : addMyPlant(data);                        // добавляем
 
   closeMyPlantForm();
   renderMyPlants();
+  notifyIfDue(saved); // если растение уже пора поливать — сразу напомним
 }
